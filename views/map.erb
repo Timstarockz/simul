@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Simul</title>
+	
+	<link rel="stylesheet" href="/css/map.css">
+		
+	<script src="http://maps.googleapis.com/maps/api/js?sensor=false&extension=.js"></script>
+	
+	<%= $js_css_links %>
+</head>
+<script type="text/javascript">
+
+function getLocation() {
+    if (navigator.geolocation) {
+        navigator.geolocation.getCurrentPosition(showPosition);
+    } else { 
+        alert("Geolocation is not supported by this browser.");
+    }
+}
+
+function showPosition(position) {
+    var stringThing = "Latitude: " + position.coords.latitude + 
+    " Longitude: " + position.coords.longitude;
+    
+    $(".spinny").css("display", "none");	
+//    alert(stringThing);
+var options = {
+    zoom: 17,
+    center:  new google.maps.LatLng(position.coords.latitude, position.coords.longitude),
+    mapTypeId: google.maps.MapTypeId.ROADMAP,
+    disableDefaultUI: true
+};
+
+map = new google.maps.Map($('#map')[0], options);
+map.setOptions({
+    styles: style
+});
+
+}
+    
+window.onload = function() {
+  getLocation();
+};
+
+jQuery(document).ready(function () {
+    var map;
+
+    var style = [
+		{
+		stylers: [
+			
+		]
+		},{
+		featureType: "poi",
+		stylers: [
+			{ visibility: "off" }
+		]
+		},{
+		featureType: "transit",
+		stylers: [
+			{ visibility: "off" }
+		]
+		},{
+		featureType: "road",
+		stylers: [
+			{ lightness: "50" },
+			{ visibility: "on" }
+		]
+		},{
+		featureType: "landscape",
+		stylers: [
+			{ lightness: "50" }
+		]
+		}
+	]
+
+    var options = {
+        zoom: 3,
+        center:  new google.maps.LatLng(45.50867, -73.553992),
+        mapTypeId: google.maps.MapTypeId.ROADMAP,
+        disableDefaultUI: true
+    };
+    
+    map = new google.maps.Map($('#map')[0], options);
+    map.setOptions({
+        styles: style
+    });
+
+});
+</script>
+
+<body>
+	<div class="container">
+		<div class="row">
+		
+		  <div class="col-md-2">
+	  	
+		  </div>
+	  
+		  <div class="col-md-8" id="search-container">
+			  
+			  <img src="/imgs/spinny.gif" class="spinny">
+		  
+			<form class="form-search" method="post" action="/">
+			 	 <div class="input-group input-group-lg">
+					 <input type="text" class="form-control" id="search-bar" name="query" placeholder="<%= $rp[rand(0..$rp.length)] %>" value="<%= @query %>" autocomplete="off" required>
+					 <span class="input-group-btn">
+						 <a class="btn btn-default" href="/">
+						 	<span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
+						 </a>
+					 </span>
+			 	</div>
+	          </form>
+			    <!-- <hr/> -->
+		  </div>
+	  
+	  
+		  <div class="col-md-2">
+	  	
+		  </div>
+	  
+		</div>
+	</div>
+	
+	<div id="map"></div>
+</body>
+</html>

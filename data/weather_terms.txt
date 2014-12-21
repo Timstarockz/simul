@@ -1,0 +1,1 @@
+weather,hot outside,cold outside,warm outside,chilly outside,nice weather,nice day out,its raining,it’s snowing,it’s pouring out

@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Simul</title>
+	
+	<link rel="stylesheet" href="/css/index.css">
+	
+	<%= $js_css_links %>
+</head>
+<script  type="text/javascript" src="/js/bootstrap3-typeahead.min.js"></script>
+<script type="text/javascript">
+$(document).ready(function(){
+	console.log('do the thing');
+	
+	$('.form-control').typeahead({
+		source: ['Today', 'Tomorrow', 'Yesterday', 'Where am I?', "Who am I?", "News", "What's trending on Twitter?"]
+	});
+	
+	// $('.form-control').tagsinput({
+// 	  typeahead: {
+// 	    source: ['Amsterdam', 'Washington', 'Sydney', 'Beijing', 'Cairo']
+// 	  }
+// 	});
+});
+</script>
+<body>
+	<div class="container">
+		
+		<div class="row">
+			
+		  <div class="col-md-2">
+		  	
+		  </div>
+		  
+		  <div class="col-md-8" id="search-container">
+			  
+			  <button type="button" id="user_popup" data-toggle="popover" title="Simul" data-content=
+			  "
+			  <a href='#'>Sign Up</a>
+			  " 
+			  style=
+			  "			  
+			  background-color:transparent;border-color: transparent; outline: none;
+			  ">
+				  <img src="/imgs/propic.jpg" class="img-circle" id="profile-icon">
+	
+				  <script type="text/javascript">
+				  	var elem = '';
+				  	$('#user_popup').popover({animation:true, content:elem, html:true});
+				  
+				     $("[data-toggle=popover]").popover();
+				  </script>
+			  </button>
+			  
+			 <div class="spacing">
+			  	<p>&nbsp;</p>
+			  	<p>&nbsp;</p>
+			</div><!--  -->
+			  <!-- $('#search-container').removeClass('animated bounceIn'); -->
+			<form class="form-search" method="post" action="/">
+			 	 <div class="input-group input-group-lg" id="search-bar">
+					 <input type="text" class="form-control" data-provide="typeahead" name="query" 
+					 
+					 onfocus=
+					 "
+					 $('#search-container').css('padding-top', '55px');
+					 $('#search-container').addClass('animated bounceIn 0.3s');
+					 
+					 $('#user_popup').css('display', 'none');
+					 $('.fade.in').css('opacity', '0');
+					 $('.spacing').css('display', 'none');
+					 
+					 "
+					 onblur=
+					 "
+					 $('#search-container').css('padding-top', '224px'); 
+					 $('#search-container').removeClass('animated bounceIn 0.3s');
+					 $('#user_popup').css('display', 'inline');
+					 $('.fade.in').css('opacity', '1');
+					 $('.spacing').css('display', 'inline');
+					 
+					 "
+					 
+					 placeholder="<%= $rp[rand($rp.length)] %>" autocomplete="off" required>
+					 <span class="input-group-btn">
+					         <button class="btn btn-default" type="submit"><span class="glyphicon glyphicon-search" aria-hidden="true"></span></button>
+					 </span>
+			 	</div>
+	          </form>
+			   
+		  </div>
+		  
+		  <div class="col-md-2">
+		  	
+		  </div>
+		  
+	</div>
+	
+	<video autoplay loop muted id="bgvid">
+        <source src="vdo/<%= $vids[rand($vids.length)] %>" type="video/mp4">
+            Your browser does not support the video tag.
+	</video>
+</body>
+
+	
+	
+</html>

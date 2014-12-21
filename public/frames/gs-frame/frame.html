@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<script src="https://www.google.com/jsapi" type="text/javascript"></script>
+</head>
+
+<body>
+  	<script>
+  	function gcseCallback() {
+  	  if (document.readyState != 'complete')
+  	    return google.setOnLoadCallback(gcseCallback, true);
+  	  google.search.cse.element.render({gname:'gsearch', div:'results', tag:'searchresults-only', attributes:{linkTarget:''}});
+  	  var element = google.search.cse.element.getElement('gsearch');
+	  
+	  function getParams() {
+	    var idx = document.URL.indexOf('?');
+	    if (idx != -1) {
+	      var tempParams = new Object();
+	      var pairs = document.URL.substring(idx+1,document.URL.length).split('&');
+	      for (var i=0; i<pairs.length; i++) {
+	        nameVal = pairs[i].split('=');
+	        tempParams[nameVal[0]] = nameVal[1];
+	      }
+	      return tempParams;
+	    }
+	  }
+	  var params = getParams();
+	  console.log(params);
+	  
+  	  var query = params;//=<?php echo json_encode($q); ?>;
+  
+  	  element.execute(query["q"]);
+  	};
+  	window.__gcse = {
+  	  parsetags: 'explicit',
+  	  callback: gcseCallback
+  	};
+       (function() {
+         var cx = '016034349115605404722:z4g5-awhdb8';
+         var gcse = document.createElement('script');
+         gcse.type = 'text/javascript';
+         gcse.async = true;
+         gcse.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') +
+             '//www.google.com/cse/cse.js?cx=' + cx;
+         var s = document.getElementsByTagName('script')[0];
+         s.parentNode.insertBefore(gcse, s);
+       })();
+        
+     </script>
+     <gcse:searchresults-only></gcse:searchresults-only>
+	
+	<div id="results"></div>
+</body>
+</html>

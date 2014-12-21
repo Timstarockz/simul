@@ -1,0 +1,38 @@
+
+#search-container
+{
+    padding-top: 55px;
+	
+}
+
+.form-search
+{
+    box-shadow: rgba(0, 0, 0, 0.46) 0px 0px 75px; 	
+    background-color: transparent;
+}
+
+
+hr
+{
+    width: 962px;
+	
+    margin-left: -109px;
+}
+
+#map {
+    height: 100%;
+    width: 100%;
+    left: 0;
+    position: absolute;
+    top: 0;    
+    z-index: -999;
+    background-size: cover;
+}
+
+.spinny {
+    position: absolute;     
+    top: 62px;     
+    right: 73px;
+    z-index: 10;
+    -webkit-transform: scale(0.8,0.8);
+}
