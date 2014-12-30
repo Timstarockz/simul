@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Simul - Configure</title>
+	<link rel="stylesheet" href="/css/configure.css">
+	
+	<%= $js_css_links %>
+	
+	<meta content="width=device-width, initial-scale=1" name="viewport">
+	
+</head>
+<script type="text/javascript">
+(function() {
+    var $$ = function(selector) {
+        return Array.prototype.slice.call(document.querySelectorAll(selector));
+    }
+    document.addEventListener("DOMContentLoaded", function() {
+        var checkbox;
+           
+        $$(".switch").forEach(function(switchControl) {
+            switchControl.addEventListener("click", function toggleSwitch() {
+                checkbox = switchControl.lastElementChild;
+                checkbox.checked = !checkbox.checked;
+	           if (switchControl.classList.contains("on")) {
+	               switchControl.lastElementChild.checked = true;
+	           }
+                switchControl.classList.toggle("on");
+            }, false);
+        });
+    }, false);
+})();
+
+window.onload = function() {
+	function check() {
+	    document.getElementById("switchy").checked = true;
+	}
+	
+	<% $d_services.each do |cmd| %>
+		$('#c_cell1_s_<%=cmd.downcase.gsub(' ', '_')%>').toggleClass( "on" );
+	<% end %>
+};
+
+
+</script>
+<body>
+	<p>&nbsp;</p>
+	<div id="title-box">
+		Simul
+		
+	</div>
+	
+	<hr id="sep-line"></hr>
+	
+	<p>&nbsp;</p>
+	
+	<div class="container">
+		
+		<div id="c_back-button">
+			<a href="/"><img src="/imgs/backApple.png"></a>
+		</div>
+		<p>&nbsp;</p>
+		<p>&nbsp;</p>
+		
+		
+
+			
+			
+<!-- ------------------------------------------- -->
+			<div class="panel panel-default">
+				
+				  <div class="panel-heading">
+				    <h3 class="panel-title">Result Sources</h3>
+				  </div>
+				  <p>&nbsp;</p>
+		  
+		  <% $d_services.each do |cmd| %>
+			<!-- ------------------------ -->
+					  <div class="panel-body">
+			  
+			  
+						  <div class="c_cell1">
+							  <div class="c_cell1_t">
+								 <%= cmd %>
+							  </div>
+							  
+							  <div class="c_cell1_sub">
+								      Some good info about this service will be written here.
+							  </div>
+				  
+							  <div class="switch" id="c_cell1_s_<%=cmd.downcase.gsub(' ', '_')%>">
+								  <span class="thumb"></span>
+								  <input type="checkbox" id="switchy" />
+							  </div>
+				  
+							  <hr id="sep-line-2"></hr>
+						  </div>
+					  
+						  <!-- ------------------------ -->
+						  
+				   	  </div>
+			<!-- ------------------------ -->
+		  <% end %>
+		
+		
+		
+			</div> <!-- panel panel-default -->
+<!-- ------------------------------------------- -->
+			
+			
+			
+			
+			
+			
+<!-- ------------------------------------------- -->
+			<div class="panel panel-default">
+				
+				  <div class="panel-heading">
+				    <h3 class="panel-title">Keyword Pages</h3>
+				  </div>
+				  <p>&nbsp;</p>
+		  
+		  <% $d_key_pages.each do |cmd| %>
+			<!-- ------------------------ -->
+					  <div class="panel-body">
+			  
+			  
+						  <div class="c_cell1">
+							  <div class="c_cell1_t">
+								  "<%= cmd %>"
+							  </div>
+				  
+							  <div class="switch" id="c_cell1_s_">
+								  <span class="thumb"></span>
+								  <input type="checkbox" id="switchy" />
+							  </div>
+				  
+							  <hr id="sep-line-2"></hr>
+						  </div>
+					  
+						  <!-- ------------------------ -->
+						  
+				   	  </div>
+			<!-- ------------------------ -->
+		  <% end %>
+		
+		
+		
+			</div> <!-- panel panel-default -->
+<!-- ------------------------------------------- -->
+	
+
+
+
+
+	</div> <!-- container -->
+</body>
+</html>
