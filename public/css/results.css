@@ -11,7 +11,7 @@
     background-color: transparent;
 }
 
-#result
+#google-result
 {
 	-webkit-animation: bounceInUp 1s;
     
@@ -27,8 +27,31 @@
     
 	/* margin-left: 242px; */
     
-	margin-top: 66px;
-	margin-left: auto ;   margin-right: auto ;
+	/* margin-top: 66px; */
+	/* margin-left: auto ; */   
+	/* margin-right: auto ; */
+}
+
+#wolfram-result
+{
+	-webkit-animation: bounceInUp 1s;
+    
+	position: relative;
+	/* text-align: center; */
+    
+	width: 636px;
+	
+    height: 300px;
+    border: silver;
+    border-style: solid;
+    border-width: thin;
+    /* left: 22px; */
+    
+	/* margin-left: 242px; */
+    
+	/* margin-top: 66px; */
+	/* margin-left: auto ; */   
+	/* margin-right: auto ; */
 }
 
 hr

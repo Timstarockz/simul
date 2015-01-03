@@ -7,9 +7,9 @@
 require 'sinatra'
 require 'sinatra/reloader'
 
+require 'json'
 
-# third party
-require 'wolfram'
+require_relative "data_center.rb"
 
 
 $rp = [
@@ -67,13 +67,15 @@ end
 
 
 post '/' do
+  @rs = {}
+  
   @query = params[:query]
   
-  # Wolfram.appid = "3K8V2G-2WYR735HEX"
-#   result = Wolfram.fetch(@query)
-#   # to see the result as a hash of pods and assumptions:
-#   hash = Wolfram::HashPresenter.new(result).to_hash
-#   puts hash
+  dc = DataCenter.new
+  dc.search_everything_for(@query)
+  @rs = dc.all_results
+  
+  puts JSON.pretty_generate(@rs)
   
   if @query.downcase == "where am i?" || @query.downcase == "where am i" || @query.downcase == "whereami"
     erb :map
